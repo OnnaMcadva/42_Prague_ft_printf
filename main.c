@@ -5,7 +5,7 @@ int main()
 // Тест для спецификатора %c:
 // без ошибок
 
-char c = 'A';
+//char c = 'A';
 /*
 printf("Original printf: %c\n", c);
 ft_printf("Custom ft_printf: %c\n", c);
@@ -102,7 +102,8 @@ ft_printf("Custom ft_printf: %s\n!", out_of_bounds_str + 100); // не пони�
 */
 
 //    Тест для спецификатора %p:
-
+// без ошибок
+/*
 void *ptr = &c;
 printf("Original printf: %p\n", ptr);
 ft_printf("Custom ft_printf: %p\n", ptr);
@@ -126,46 +127,174 @@ ft_printf("Custom ft_printf: %p\n", (void*)&d);
 unsigned int ui = 12345;
 printf("Original printf: %p\n", (void*)&ui);
 ft_printf("Custom ft_printf: %p\n", (void*)&ui);
+*/
 
+// с ошибками
+/*
+void *null_ptr = NULL;
+printf("Original printf: %p\n", null_ptr); // передача нулевого указателя
+ft_printf("Custom ft_printf: %p\n", null_ptr);
+//char *uninitialized_ptr;
+//printf("Original printf: %p\n", uninitialized_ptr); // передача неинициализированного указателя
+//ft_printf("Custom ft_printf: %p\n", uninitialized_ptr); // передача неинициализированного указателя
+char buffer[10];
+char *out_of_bounds_ptr = &buffer[20];
+printf("Original printf: %p\n", out_of_bounds_ptr); // передача указателя, выходящего за пределы памяти
+ft_printf("Custom ft_printf: %p\n", out_of_bounds_ptr);
+void (*fn_ptr)() = &test_function;
+printf("Original printf: %p\n", fn_ptr); // передача указателя на функцию
+ft_printf("Custom ft_printf: %p\n", fn_ptr);
+*/
 
-//    Тест для спецификатора %d:
-
+//    Тест для спецификатора  %i и %d:
+// без ошибок
+/*
 int num12345 = 12345;
 printf("Original printf: %d\n", num12345);
 ft_printf("Custom ft_printf: %d\n", num12345);
-
-//    Тест для спецификатора %i:
-
+int positive_num = 42;
+printf("Original printf: %d\n", positive_num);
+ft_printf("Custom ft_printf: %d\n", positive_num);
+int negative_num = -123;
+printf("Original printf: %d\n", negative_num);
+ft_printf("Custom ft_printf: %d\n", negative_num);
+int zero_num = 0;
+printf("Original printf: %d\n", zero_num);
+ft_printf("Custom ft_printf: %d\n", zero_num);
+int max_int = INT_MAX;
+printf("Original printf: %d\n", max_int);
+ft_printf("Custom ft_printf: %d\n", max_int);
+int min_int = INT_MIN;
+printf("Original printf: %d\n", min_int);
+ft_printf("Custom ft_printf: %d\n", min_int);
+int custom_num = 9876;
+printf("Original printf: %d\n", custom_num);
+ft_printf("Custom ft_printf: %d\n", custom_num);
 int integer = -54321;
 printf("Original printf: %i\n", integer);
 ft_printf("Custom ft_printf: %i\n", integer);
+*/
+// тесты с 8 и 16
+/*
+int hex_num1 = 0xABC;
+printf("Original printf: %d\n", hex_num1);
+ft_printf("Custom ft_printf: %d\n", hex_num1);
+int octal_num = 0123;
+printf("Original printf: %d\n", octal_num);
+ft_printf("Custom ft_printf: %d\n", octal_num);
+int hex_num_int = 0xABC;
+printf("Original printf: %d\n", hex_num_int);
+ft_printf("Custom ft_printf: %d\n", hex_num_int);
+int octal_num_int = 0123;
+printf("Original printf: %d\n", octal_num_int);
+ft_printf("Custom ft_printf: %d\n", octal_num_int);
+*/
+
+// с ошибками
+/*
+double invalid_num = 123.456;
+//printf("Original printf: %d\n", invalid_num); // передача дробного числа
+ft_printf("Custom ft_printf: %d\n", invalid_num); // ведет себя неверно
+char *invalid_str = "hello";
+//printf("Original printf: %d\n", invalid_str); // передача строки
+ft_printf("Custom ft_printf: %d\n", invalid_str); // ведет себя неверно
+void *invalid_ptr = &test_function;
+//printf("Original printf: %d\n", invalid_ptr); // передача указателя
+ft_printf("Custom ft_printf: %d\n", invalid_ptr); // ведет себя неверно
+//printf("orig print: %d\n", -2147483648);
+ft_printf("orig print: %d\n", -2147483648); // ведет себя неверно
+*/
 
 //    Тест для спецификатора %u:
-
+/*
+// без ошибок
 unsigned int unsigned_num = 54321;
 printf("Original printf: %u\n", unsigned_num);
 ft_printf("Custom ft_printf: %u\n", unsigned_num);
+unsigned int positive_num1 = 12345;
+printf("Original printf: %u\n", positive_num1);
+ft_printf("Custom ft_printf: %u\n", positive_num1);
+unsigned int zero = 0;
+printf("Original printf: %u\n", zero);
+ft_printf("Custom ft_printf: %u\n", zero);
+unsigned int max_value = UINT_MAX;
+printf("Original printf: %u\n", max_value);
+ft_printf("Custom ft_printf: %u\n", max_value);
+*/
+// с ошибками
+/*
+int negative_num = -123;
+printf("Original printf: %u\n", negative_num); // передача отрицательного числа
+ft_printf("Custom ft_printf: %u\n", negative_num);
+char invalid_char = 'A';
+printf("Original printf: %u\n", invalid_char); // передача символа
+ft_printf("Custom ft_printf: %u\n", invalid_char);
+double decimal_num = 123.456;
+printf("Original printf: %u\n", (unsigned int)decimal_num); // передача дробного числа
+ft_printf("Custom ft_printf: %u\n", (unsigned int)decimal_num);
+*/
 
-//    Тест для спецификатора %x:
-
+//    Тест для спецификатора %x и %X:
+/*
+// без ошибок
 int hex_num = 255;
 printf("Original printf: %x\n", hex_num);
 ft_printf("Custom ft_printf: %x\n", hex_num);
-
-//    Тест для спецификатора %X:
-
 int upper_hex_num = 255;
 printf("Original printf: %X\n", upper_hex_num);
 ft_printf("Custom ft_printf: %X\n", upper_hex_num);
+unsigned int positive_num = 4567;
+printf("Original printf: %x\n", positive_num);
+ft_printf("Custom ft_printf: %x\n", positive_num);
+printf("Original printf: %X\n", positive_num);
+ft_printf("Custom ft_printf: %X\n", positive_num);
+unsigned int zero = 0;
+printf("Original printf: %x\n", zero);
+ft_printf("Custom ft_printf: %x\n", zero);
+printf("Original printf: %X\n", zero);
+ft_printf("Custom ft_printf: %X\n", zero);
+unsigned int max_value = UINT_MAX;
+printf("Original printf: %x\n", max_value);
+ft_printf("Custom ft_printf: %x\n", max_value);
+printf("Original printf: %X\n", max_value);
+ft_printf("Custom ft_printf: %X\n", max_value);
+*/
+// с ошибками
+/*
+int negative_num = -123;
+printf("Original printf: %x\n", negative_num); // передача отрицательного числа
+ft_printf("Custom ft_printf: %x\n", negative_num);
+printf("Original printf: %X\n", negative_num); // передача отрицательного числа
+ft_printf("Custom ft_printf: %X\n", negative_num);
+char invalid_char = 'A';
+printf("Original printf: %x\n", invalid_char); // передача символа
+ft_printf("Custom ft_printf: %x\n", invalid_char);
+printf("Original printf: %X\n", invalid_char); // передача символа
+ft_printf("Custom ft_printf: %X\n", invalid_char);
+double decimal_num = 123.456;
+printf("Original printf: %x\n", (unsigned int)decimal_num); // передача дробного числа
+ft_printf("Custom ft_printf: %x\n", (unsigned int)decimal_num);
+printf("Original printf: %X\n", (unsigned int)decimal_num); // передача дробного числа
+ft_printf("Custom ft_printf: %X\n", (unsigned int)decimal_num);
+*/
 
 //   Тест для спецификатора %%:
 
 printf("Original printf: %%\n");
 ft_printf("Custom ft_printf: %%\n");
+printf("Original printf: Hello, %% world!\n");
+ft_printf("Custom ft_printf: Hello, %% world!\n");
+int num = 123;
+printf("Original printf: The number is %d%%\n", num);
+ft_printf("Custom ft_printf: The number is %d%%\n", num);
+
+char invalid_char = 'A';
+printf("Original printf: %%%c\n", invalid_char); // передача символа
+ft_printf("Custom ft_printf: %%%c\n", invalid_char);
+
 
     return 0;
 }
-
 
 void test_function() {
     write(1, "abra", 4);

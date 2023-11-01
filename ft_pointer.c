@@ -28,23 +28,6 @@ void	ft_putptr(uintptr_t num)
 			ft_putchar(num - 10 + 'a');
 	}
 }
-/*
-int	ft_print_pointer(unsigned long long ptr)
-{
-	int	cumulative_length;
-
-	cumulative_length = 0;
-	//cumulative_length += write(1, "0x", 2);
-    cumulative_length += write(1, "(nil)", 5);
-	if (ptr == 0)
-		cumulative_length += write(1, "0", 1);
-	else
-	{
-		ft_putptr(ptr);
-		cumulative_length += ft_ptrlen(ptr);
-	}
-	return (cumulative_length);
-}*/
 
 int	ft_print_pointer(unsigned long long ptr)
 {
