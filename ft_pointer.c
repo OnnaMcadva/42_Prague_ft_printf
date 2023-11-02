@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_pointer.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anmakaro <anmakaro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/02 12:14:06 by anmakaro          #+#    #+#             */
+/*   Updated: 2023/11/02 12:14:07 by anmakaro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int	ft_ptrlen(uintptr_t num)
@@ -31,16 +43,16 @@ void	ft_putptr(uintptr_t num)
 
 int	ft_print_pointer(unsigned long long ptr)
 {
-    int cumulative_length;
+	int	cumulative_length;
 
-    cumulative_length = 0;
-    if (ptr == 0)
-        cumulative_length += write(1, "(nil)", 5);
-    else
-    {
-        cumulative_length += write(1, "0x", 2);
-        ft_putptr(ptr);
-        cumulative_length += ft_ptrlen(ptr);
-    }
-    return (cumulative_length);
+	cumulative_length = 0;
+	if (ptr == 0)
+		cumulative_length += write(1, "(nil)", 5);
+	else
+	{
+		cumulative_length += write(1, "0x", 2);
+		ft_putptr(ptr);
+		cumulative_length += ft_ptrlen(ptr);
+	}
+	return (cumulative_length);
 }
