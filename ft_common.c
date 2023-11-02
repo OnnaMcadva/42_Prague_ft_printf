@@ -1,4 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_common.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anmakaro <anmakaro@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/02 12:10:02 by anmakaro          #+#    #+#             */
+/*   Updated: 2023/11/02 12:11:02 by anmakaro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
 
 /*static int		ft_convert(int nb)
 {
@@ -33,7 +50,3 @@ char	*itoa_base(int value, int base)
 	}
 	return (str);
 }*/
-
-void	ft_putchar(char c) {
-	write(1, &c, 1);
-}
