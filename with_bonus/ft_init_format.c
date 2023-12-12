@@ -10,7 +10,7 @@ int	ft_init_format(char format, va_list args, t_format flags)
 			+= ft_print_char(va_arg(args, int), flags);
 	else if (format == 's')
 		cum_len
-			+= ft_print_str(va_arg(args, const char *), flags);
+			+= ft_print_string(va_arg(args, const char *), flags);
 	else if (format == 'p')
 		cum_len
 			+= ft_print_pointer((unsigned long int)va_arg(args, void *), flags);
