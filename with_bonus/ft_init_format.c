@@ -61,7 +61,7 @@ int	ft_init_flags(const char *str, int i, va_list args, t_format *flags)
 			*flags = ft_flag_width(args, *flags);
 		if (ft_isdigit(str[i]))
 			*flags = ft_flag_digit(str[i], *flags);
-		if (ft_ismodi(str[i]))
+		if (ft_isspec(str[i]))
 		{
 			flags->spec = str[i];
 			break ;
@@ -87,7 +87,7 @@ int	ft_handle(char *str, va_list args)
 			j = ft_init_flags(str, i, args, &flags);
 			if (flags.spec > 0)
 				i = j;
-			if (str[i] != '\0' && flags.spec > 0 && ft_ismodi(str[i]))
+			if (str[i] != '\0' && flags.spec > 0 && ft_isspec(str[i]))
 				count += ft_init_format(str[i], args, flags);
 			else if (str[i] != '\0')
 				count += ft_print_c(str[i]);

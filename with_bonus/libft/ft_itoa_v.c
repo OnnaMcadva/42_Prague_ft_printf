@@ -12,56 +12,53 @@
 
 #include "libft.h"
 
-static size_t	ft_number_size(long num)
+static unsigned int	ft_number_size(long nbr)
 {
-	size_t	digits;
+	unsigned int	digits;
 
 	digits = 0;
-	if (num == 0)
+	if (nbr == 0)
 		return (1);
-	if (num < 0)
+	if (nbr < 0)
+		digits += 1;
+	while (nbr != 0)
 	{
+		nbr /= 10;
 		digits++;
-		num = -num;
-	}
-	while (num >= 1)
-	{
-		digits++;
-		num /= 10;
 	}
 	return (digits);
 }
 
-static char	*ft_itoa(long num, char *str, size_t digits)
+static char	*ft_itoa(long nbr, char *str, size_t digits)
 {
 	str = ft_calloc(digits + 1, sizeof(char));
 	if (str == NULL)
 		return (NULL);
-	if (num < 0)
+	if (nbr < 0)
 	{
 		str[0] = '-';
-		num = -num;
+		nbr = -nbr;
 	}
 	digits--;
 	while (digits)
 	{
-		str[digits] = (num % 10) + '0';
-		num /= 10;
+		str[digits] = (nbr % 10) + '0';
+		nbr /= 10;
 		digits--;
 	}
 	if (str[0] != '-')
-		str[0] = (num % 10) + '0';
+		str[0] = (nbr % 10) + '0';
 	return (str);
 }
 
-char	*ft_itoa_v(long num)
+char	*ft_itoa_v(long nbr)
 {
 	size_t	digits;
 	char	*str;
 
-	digits = ft_number_size(num);
+	digits = ft_number_size(nbr);
 	str = 0;
-	str = ft_itoa(num, str, digits);
+	str = ft_itoa(nbr, str, digits);
 	if (!str)
 		return (NULL);
 	return (str);
