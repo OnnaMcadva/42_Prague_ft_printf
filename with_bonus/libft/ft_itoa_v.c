@@ -6,60 +6,53 @@
 /*   By: anmakaro <anmakaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:56:09 by anmakaro          #+#    #+#             */
-/*   Updated: 2023/12/13 12:56:10 by anmakaro         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:52:15 by anmakaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static unsigned int	ft_number_size(long nbr)
+static char	*ft_hex_to_str(unsigned long int num, char *str, size_t len)
 {
-	unsigned int	digits;
+	int	mod;
 
-	digits = 0;
-	if (nbr == 0)
-		return (1);
-	if (nbr < 0)
-		digits += 1;
-	while (nbr != 0)
-	{
-		nbr /= 10;
-		digits++;
-	}
-	return (digits);
-}
-
-static char	*ft_itoa(long nbr, char *str, size_t digits)
-{
-	str = ft_calloc(digits + 1, sizeof(char));
+	str = ft_calloc(len + 1, sizeof(char));
 	if (str == NULL)
 		return (NULL);
-	if (nbr < 0)
+	len--;
+	while (len != (size_t)-1)
 	{
-		str[0] = '-';
-		nbr = -nbr;
+		mod = num % 16;
+		if (mod < 10)
+			str[len] = mod + '0';
+		else if (mod >= 10)
+			str[len] = (mod - 10) + 'a';
+		num = num / 16;
+		len--;
 	}
-	digits--;
-	while (digits)
-	{
-		str[digits] = (nbr % 10) + '0';
-		nbr /= 10;
-		digits--;
-	}
-	if (str[0] != '-')
-		str[0] = (nbr % 10) + '0';
 	return (str);
 }
 
-char	*ft_itoa_v(long nbr)
+char	*ft_itoa_hex(unsigned long int num, int is_up)
 {
-	size_t	digits;
+	size_t	len;
 	char	*str;
+	int		i;
 
-	digits = ft_number_size(nbr);
+	len = ft_numlen(num, 16);
 	str = 0;
-	str = ft_itoa(nbr, str, digits);
+	str = ft_hex_to_str(num, str, len);
 	if (!str)
 		return (NULL);
+	if (is_up == 1)
+	{
+		i = 0;
+		while (str[i])
+		{
+			if (str[i] >= 'a' && str[i] <= 'f')
+				str[i] -= 32;
+			i++;
+		}
+	}
 	return (str);
 }

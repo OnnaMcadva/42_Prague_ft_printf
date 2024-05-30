@@ -3,42 +3,43 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anmakaro <anmakaro@student.42.fr>          +#+  +:+       +#+         #
+#    By: annavm <annavm@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:56:29 by anmakaro          #+#    #+#              #
-#    Updated: 2023/12/13 12:56:30 by anmakaro         ###   ########.fr        #
+#    Updated: 2024/05/27 16:06:25 by annavm           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
 CC = gcc
-
 CFLAGS = -Wall -Wextra -Werror
+AR = ar rc
+RM = rm -f
 
-AR = ar
+SRCS = ft_isdigit.c \
+		ft_itoa_base.c \
+		ft_putchar.c \
+		ft_strdup.c \
+		ft_strlen.c \
+		ft_calloc.c \
+		ft_itoa_v.c \
 
-SRC = ft_isdigit \
-      ft_strdup \
-      ft_strlen \
-      ***.c
-
-OBJ = $(SRC:.c=.o)
-
-$(NAME): $(OBJ)
-	$(AR) rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
+$(NAME): $(OBJS)
+	$(AR) $(NAME) $(OBJS)
+
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ)
+	$(RM) $(OBJS)
 
 fclean: clean
-	@rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 
