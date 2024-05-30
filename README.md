@@ -9,3 +9,5 @@ Because ft_putnbr() and ft_putstr() aren’t enough
 
 
 ![Screenshot from 2023-11-02 16-05-14](https://github.com/OnnaMcadva/42_Prague_ft_printf/assets/94723781/3424c851-d054-4ebd-9617-2aab407cbb9c)
+
+![Screenshot from 2024-05-30 12-43-33](https://github.com/OnnaMcadva/42_Prague_ft_printf/assets/94723781/bf4033a1-2d74-40fc-871e-f3b200cc560b)
