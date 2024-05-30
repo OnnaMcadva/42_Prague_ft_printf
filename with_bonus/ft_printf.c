@@ -3,14 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmakaro <anmakaro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annavm <annavm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:56:52 by anmakaro          #+#    #+#             */
-/*   Updated: 2023/12/13 12:56:53 by anmakaro         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:13:10 by annavm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	ft_handle(char *str, va_list args)
+{
+	int			i;
+	int			j;
+	int			count;
+	t_format	flags;
+
+	i = -1;
+	count = 0;
+	while (str[++i])
+	{
+		flags = ft_flags_handle();
+		if (str[i] == '%' && str[i + 1] != '\0')
+		{
+			j = ft_init_flags(str, i, args, &flags);
+			if (flags.spec > 0)
+				i = j;
+			if (str[i] != '\0' && flags.spec > 0 && ft_isspec(str[i]))
+				count += ft_init_format(str[i], args, flags);
+			else if (str[i] != '\0')
+				count += ft_putchar(str[i]);
+		}
+		else
+			count += ft_putchar(str[i]);
+	}
+	return (count);
+}
 
 int	ft_printf(const char *str, ...)
 {

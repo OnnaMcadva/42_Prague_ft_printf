@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_string.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmakaro <anmakaro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annavm <annavm@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:57:10 by anmakaro          #+#    #+#             */
-/*   Updated: 2023/12/13 12:57:11 by anmakaro         ###   ########.fr       */
+/*   Updated: 2024/05/26 21:35:48 by annavm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_print_strfl(const char *str, t_format flags)
+static int	ft_print_str_with_flags(const char *str, t_format flags)
 {
 	int	cum_len;
 
 	cum_len = 0;
 	if (flags.precision >= 0)
 	{
-		cum_len += ft_pad_width(flags.precision, ft_strlen(str), 0);
+		cum_len += ft_apply_padding(flags.precision, ft_strlen(str), 0);
 		cum_len += ft_print_prec(str, flags.precision);
 	}
 	else
@@ -34,7 +34,7 @@ int	ft_print_string(const char *str, t_format flags)
 	cum_len = 0;
 	if (str == NULL && flags.precision >= 0 && flags.precision < 6)
 	{
-		cum_len += ft_pad_width(flags.width, 0, 0);
+		cum_len += ft_apply_padding(flags.width, 0, 0);
 		return (cum_len);
 	}
 	if (str == NULL)
@@ -42,13 +42,13 @@ int	ft_print_string(const char *str, t_format flags)
 	if (flags.precision >= 0 && (size_t)flags.precision > ft_strlen(str))
 		flags.precision = ft_strlen(str);
 	if (flags.left == 1)
-		cum_len += ft_print_strfl(str, flags);
+		cum_len += ft_print_str_with_flags(str, flags);
 	if (flags.precision >= 0)
-		cum_len += ft_pad_width(flags.width, flags.precision, 0);
+		cum_len += ft_apply_padding(flags.width, flags.precision, 0);
 	else
-		cum_len += ft_pad_width(flags.width, ft_strlen(str), 0);
+		cum_len += ft_apply_padding(flags.width, ft_strlen(str), 0);
 	if (flags.left == 0)
-		cum_len += ft_print_strfl(str, flags);
+		cum_len += ft_print_str_with_flags(str, flags);
 	return (cum_len);
 }
 
